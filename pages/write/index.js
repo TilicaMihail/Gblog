@@ -2,7 +2,7 @@ import React from 'react'
 import Header from '../../components/Header'
 import WriteForm from '../../components/WriteForm'
 
-const index = () => {
+const Index = () => {
     return (
         <div>
             <Header />
@@ -11,4 +11,4 @@ const index = () => {
     )
 }
 
-export default index
+export default Index

@@ -5,7 +5,7 @@ import Header from '../../components/Header'
 import WriteForm from '../../components/WriteForm'
 import { db } from '../../firebase-config'
 
-const index = () => {
+const Index = () => {
     const [post, setPost] = useState({})
     const router = useRouter()
     const { id } = router.query
@@ -34,4 +34,4 @@ const index = () => {
     )
 }
 
-export default index
+export default Index
