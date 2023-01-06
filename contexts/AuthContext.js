@@ -1,9 +1,13 @@
-import React, { useEffect } from 'react'
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth'
+import { doc, getDoc, setDoc } from 'firebase/firestore'
+import React, { useEffect, useState } from 'react'
+import { auth, db } from '../firebase-config'
 
-const AuthContext = React.createContext()
+export const AuthContext = React.createContext()
 
-const AuthProvider = () => {
+const AuthProvider = ({ children }) => {
     const [user, setUser] = useState()
+    const [error, setError] = useState('')
 
     const login = async (loginEmail, loginPassword) => {
         try{
@@ -13,27 +17,57 @@ const AuthProvider = () => {
                 loginEmail, 
                 loginPassword
             );
-            console.log(user)
         }
         catch (error) {
-            setError(err.message)
+            setError(error.message)
         }
     }
 
-    const register = async (username, password) => {
-
+    const register = async (registerEmail, registerPassword, username) => {
+        try{
+            setError('')
+            const user = await createUserWithEmailAndPassword(
+                auth, 
+                registerEmail, 
+                registerPassword
+            );
+            console.log(user)
+            await setDoc(doc(db, 'users', user.user.uid), {
+                email: registerEmail,
+                username: username,
+                posts: []
+            })
+        }
+        catch (error) {
+            setError(error.message)
+        }
     }
 
-    const getUser = async () => {
-
+    const logout = async () => {
+        try {
+            await signOut(auth);
+        } catch (error) {
+            console.log(error.message)
+        }
     }
 
     useEffect(() => {
-
+        onAuthStateChanged(auth, async (currentUser) => {
+            if(currentUser) {
+                console.log(currentUser.uid)
+                const snap = await getDoc(doc(db, "users", currentUser.uid))
+                if(snap.exists())
+                    setUser(snap.data())
+            } else {
+                setUser()
+            }
+        })
     }, [])
 
     return (
-        <div> AuthProvider</div>
+        <AuthContext.Provider value = {{user, error, setError, login, register, logout}}>
+            { children }
+        </AuthContext.Provider>
     )
 }
 
