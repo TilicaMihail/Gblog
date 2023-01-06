@@ -2,8 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
-.hover-card:hover .title {
-    text-decoration-line: underline;
+.hover-card {
+    transition: all 0.16s ease-in-out;
+}
+
+.hover-card:hover {
+    transform: scale(1.008);
 }
 
 .bg-gradient {
