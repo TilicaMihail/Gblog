@@ -20,7 +20,7 @@ export default function Home() {
     }, [])
 
     return (
-        <div className = ''>
+        <div className = 'bg-gradient'>
             <Header />
             <Hero />
             <div className = 'flex flex-wrap p-10'>

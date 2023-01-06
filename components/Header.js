@@ -10,7 +10,7 @@ const Header = () => {
     const { user, logout } = useContext(AuthContext)
 
     return (
-        <div className = 'flex justify-between items-center p-2 shadow'>
+        <div className = 'flex justify-between items-center p-2 shadow bg-white'>
             <Link href = "/">
                 <div className = 'flex items-center'>
                     <img src = 'https://static4.depositphotos.com/1029305/388/v/450/depositphotos_3882728-stock-illustration-line-art-black-pen.jpg' alt = '' className = 'rounded-full h-10 w-10 ' />
