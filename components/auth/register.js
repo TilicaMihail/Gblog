@@ -11,7 +11,7 @@ const RegisterModal = ({ open, setOpen }) => {
         <>
             {   
                 open &&
-                <div onClick = {e => {setOpen(false); setError('')}} className = 'fixed w-screen h-screen top-0 left-0 flex items-center justify-center'>
+                <div onClick = {e => {setOpen(false); setError('')}} className = 'fixed z-10 w-screen h-screen top-0 left-0 flex items-center justify-center'>
                     <div onClick = {e => e.stopPropagation()} className = 'border p-4 bg-white shadow-xl sm:w-[450px] rounded-xl'>
                         <div className = 'text-center font-bold text-2xl'>
                             Register

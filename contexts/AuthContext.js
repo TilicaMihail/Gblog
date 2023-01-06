@@ -54,7 +54,6 @@ const AuthProvider = ({ children }) => {
     useEffect(() => {
         onAuthStateChanged(auth, async (currentUser) => {
             if(currentUser) {
-                console.log(currentUser.uid)
                 const snap = await getDoc(doc(db, "users", currentUser.uid))
                 if(snap.exists())
                     setUser(snap.data())
