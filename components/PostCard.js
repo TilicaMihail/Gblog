@@ -3,7 +3,7 @@ import React from 'react'
 
 const PostCard = ({ post }) => {
     return (
-        <Link href = {`/posts/${post.title}`}>
+        <Link href = {`/posts/${encodeURIComponent(post.title)}`}>
             <div className = 'p-3 ml-1 mr-1 hover-card hover:cursor-pointer'>
                 <div className = 'relative'>
                     <div className = 'absolute border-t border-gray-300 bottom-0 left-0 w-full h-16 flex items-center justify-end bg-clip-padding backdrop-filter backdrop-blur-md bg-opacity-40'>
@@ -17,7 +17,7 @@ const PostCard = ({ post }) => {
                     <div className = 'font-bold text-xl pt-4 title'>
                         {post?.title}
                     </div>
-                    <div className = 'pt-1 h-12 overflow-hidden'>
+                    <div className = 'pt-1 h-12 overflow-hidden mb-5'>
                         {post?.description} 
                     </div>
                 </div>
