@@ -11,7 +11,7 @@ const PostCard = ({ post }) => {
                             {post?.author}
                         </div>
                     </div>
-                    <img src = {post?.bannerUrl} alt="" className = 'shadow rounded-xl' />
+                    <img src = {post?.bannerUrl} alt="" className = 'shadow rounded-xl aspect-video object-cover' />
                 </div>
                 <div className = 'pt-2'>
                     <div className = 'font-bold text-xl pt-4 title'>
